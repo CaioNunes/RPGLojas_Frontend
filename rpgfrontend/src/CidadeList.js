@@ -2,7 +2,7 @@ import React , { Component } from 'react';
 import {Button, ButtonGroup, Container, Table} from 'reactstrap';
 import AppNavbar from './AppNavbar';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import axios from './axios';
 
 class CidadeList extends Component {
     constructor(props){
@@ -12,7 +12,7 @@ class CidadeList extends Component {
 
 
     getCidadesInfo() {
-        axios('/cidades')
+        axios('cidades')
             .then(response => {
                 console.log(response.json);
                 console.log(response.data);
