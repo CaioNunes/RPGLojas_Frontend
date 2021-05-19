@@ -1,36 +1,20 @@
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Component } from 'react';
+import Home from './Home';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import CidadeList from './CidadeList';
 
 class App extends Component {
-  state = {
-    cidades: []
-  };
-
-  componentDidMount() {
-    
-    fetch('/cidades')
-      .then(response => response.json())
-      .then(data => this.setState({cidades: data}));
-  }
 
   render() {
-    const {cidades} = this.state;
-
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <div className="App-intro">
-            <h2>Cidades</h2>
-            {cidades.map((cidade) =>
-              <div key={cidade.id}>
-                {cidade.nome} - {cidade.tesouro}
-              </div>  
-            )}
-          </div>
-        </header>
-      </div>
+      <Router>
+        <Switch>
+          <Route path="/" exact={true} component={Home} />
+          <Route path="/cidades" exact={true} component={CidadeList} />
+        </Switch>
+      </Router>
     )
 
   }
