@@ -14,6 +14,8 @@ class CidadeList extends Component {
     getCidadesInfo() {
         axios('/cidades')
             .then(response => {
+                console.log(response.json);
+                console.log(response.data);
                 const cidadesRetornadas = response.data;
                 this.setState({
                     cidades: cidadesRetornadas,
