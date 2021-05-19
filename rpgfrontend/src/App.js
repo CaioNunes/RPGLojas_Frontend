@@ -7,21 +7,23 @@ class App extends Component {
     cidades: []
   };
 
-  async componentDidMount() {
-    const response = await fetch('/cidades');
-    const body = await response.json();
-    this.setState({cidades: body});
+  componentDidMount() {
+    
+    fetch('/cidades')
+      .then(response => response.json())
+      .then(data => this.setState({cidades: data}));
   }
 
   render() {
     const {cidades} = this.state;
+
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <div className="App-intro">
             <h2>Cidades</h2>
-            {cidades.map(cidade =>
+            {cidades.map((cidade) =>
               <div key={cidade.id}>
                 {cidade.nome} - {cidade.tesouro}
               </div>  
@@ -30,6 +32,7 @@ class App extends Component {
         </header>
       </div>
     )
+
   }
 
 }
